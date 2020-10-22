@@ -1,0 +1,6 @@
+.component {
+    text-align: left;
+    padding-bottom: 50px;
+    border-bottom: 2px solid grey;
+    box-shadow: 0.4px 4px #888888;
+}

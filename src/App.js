@@ -4,6 +4,7 @@ import './App.css';
 import Education from './components/Education';
 import GeneralInfo from './components/GeneralInfo';
 import Practical from './components/Practical';
+import Title from './components/Title';
 
 class App extends Component {
 
@@ -12,7 +13,11 @@ class App extends Component {
 
 
     this.state = {
-      name: ''
+      name: '',
+      nameField: <form onSubmit={this.nameSubmitHandler}>
+        <input type="text" name="name" placeholder="Your Name Here" />
+        <input type="submit" value="Submit"></input>
+      </form>
     }
 
     this.nameSubmitHandler = this.nameSubmitHandler.bind(this);
@@ -21,38 +26,35 @@ class App extends Component {
 
   nameSubmitHandler = (event) => {
     this.setState({
-      name: event.target.name.value
+      name: event.target.name.value,
+      nameField: <p onClick={() => this.nameFieldSetter(this.state.name)}>{event.target.name.value || "Click here to set your name"}</p>
+    })
+
+  }
+
+  nameChangeHandler = (event) => {
+    event.preventDefault();
+    this.setState({
+      name: event.target.value
     })
   }
 
-  nameChangeHandler = (nameField) => {
-    console.log(nameField);
-    nameField = <form onSubmit={this.nameSubmitHandler}>
-      <input type="text" name="name" placeholder={this.state.name} />
-      <input type="submit" value="Submit"></input>
-    </form>
-    return nameField;
+  nameFieldSetter = (name) => {
+    this.setState({
+      nameField: <form onSubmit={this.nameSubmitHandler}>
+        <input type="text" name="name" onChange={this.nameChangeHandler} placeholder="Your Name Here" />
+        <input type="submit" value="Submit"></input>
+      </form>
+    })
   }
-
 
 
   render() {
 
-    let nameField = <div></div>
-
-    this.state.name ?
-      nameField = <p onClick={() => this.nameChangeHandler(nameField)}>{this.state.name}</p> :
-      nameField = <form onSubmit={this.nameSubmitHandler}>
-        <input type="text" name="name" placeholder="Your Name Here" />
-        <input type="submit" value="Submit"></input>
-      </form>
-
-
 
     return (
       < div className="App" >
-        <h1>CIRRICULUM VITAE</h1>
-        {nameField}
+        <Title />
         <GeneralInfo />
         <Practical />
         <Education />
