@@ -31,7 +31,7 @@ class Title extends Component {
         if (status === "set") {
             fieldToggler =
                 <form onSubmit={this.submitNameHandler}>
-                    <input type="text" name="name" placeholder={this.state.name || "Your Name Here"} /><input type="submit" value="Submit" />
+                    <input required type="text" name="name" placeholder={this.state.name || "Your Name Here"} /><input type="submit" value="Submit" />
                 </form>
         } else {
             fieldToggler = <h3 onClick={() => this.toggleFieldHandler("set", this.state.name)}>{name || "Click Here To Set Your Name"}</h3>

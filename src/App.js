@@ -20,33 +20,7 @@ class App extends Component {
       </form>
     }
 
-    this.nameSubmitHandler = this.nameSubmitHandler.bind(this);
-    this.nameChangeHandler = this.nameChangeHandler.bind(this);
   };
-
-  nameSubmitHandler = (event) => {
-    this.setState({
-      name: event.target.name.value,
-      nameField: <p onClick={() => this.nameFieldSetter(this.state.name)}>{event.target.name.value || "Click here to set your name"}</p>
-    })
-
-  }
-
-  nameChangeHandler = (event) => {
-    event.preventDefault();
-    this.setState({
-      name: event.target.value
-    })
-  }
-
-  nameFieldSetter = (name) => {
-    this.setState({
-      nameField: <form onSubmit={this.nameSubmitHandler}>
-        <input type="text" name="name" onChange={this.nameChangeHandler} placeholder="Your Name Here" />
-        <input type="submit" value="Submit"></input>
-      </form>
-    })
-  }
 
 
   render() {
@@ -56,8 +30,8 @@ class App extends Component {
       < div className="App" >
         <Title />
         <GeneralInfo />
-        <Practical />
         <Education />
+        <Practical />
       </div>
     );
   }
