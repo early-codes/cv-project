@@ -14,3 +14,42 @@
 h2 {
     text-decoration: underline;
 }
+
+input {
+    border: none;
+    margin:0.2%;
+    border-radius: 6px;
+}
+
+input[type="submit"],  input[type="button"]{
+    background-color: #28abb9;
+    height: 2em;
+}
+
+input[value="+"]:hover {
+    transform: scale(3);
+}
+
+textarea {
+    border: none;
+    margin:0.2%;
+    width: 180px;
+    border-radius: 6px;
+    padding-left: 10px;
+    padding-top: 4px;
+}
+
+input[type="text"] {
+    width: 180px;
+    height: 2em;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+input[type="text"]::placeholder {
+    margin-top: 0;
+}
+
+p {
+    width: 500px;
+}

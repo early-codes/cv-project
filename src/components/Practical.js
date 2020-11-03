@@ -25,7 +25,7 @@ class Practical extends Component {
                 <input required type="text" name={index + "inputText"} placeholder="Your Work Experience Here"></input><br />
                 <textarea required placeholder="Your Work Experience Details Here" name={index + "textArea"}></textarea><br />
                 <input type="submit" value="Submit"></input>
-                <input type="button" value="Cancel" onClick={() => this.cancelHandler(index)}></input>
+                <input type="button" value="Cancel" onClick={() => this.cancelHandler(index, null)}></input>
             </form>,
             ...this.state.expField.slice(index)]
         })
@@ -48,7 +48,7 @@ class Practical extends Component {
     }
 
     editExpHandler = (expIndex) => {
-        let fieldToChange = this.state.expField.filter((field) => (field.key) === expIndex.toString())
+        let fieldToChange = this.state.expField[expIndex]
         this.setState({
             expField: this.state.expField.map((field) => {
                 return ((expIndex.toString() === field.key.toString()) ?
@@ -66,13 +66,27 @@ class Practical extends Component {
     }
 
     cancelHandler = (filterIndex, fieldToChange) => {
-        this.setState({
-            expField: this.state.expField.map((field) => {
-                return ((field.key === filterIndex.toString()) ?
-                    fieldToChange[0] :
-                    field
+        let expFieldSetter = () => {
+            if (fieldToChange) {
+                return (
+                    this.state.expField.map((field) => {
+                        return (
+                            (field.key.toString() === filterIndex.toString()) ?
+                                fieldToChange :
+                                field
+                        )
+                    })
                 )
-            })
+            } else {
+                return (
+                    this.state.expField.filter((field) =>
+                        field.key !== filterIndex.toString()
+                    )
+                )
+            }
+        }
+        this.setState({
+            expField: expFieldSetter()
         })
     }
 
@@ -86,7 +100,20 @@ class Practical extends Component {
 
     componentDidMount() {
         this.setState({
-            expField: this.state.expField.concat(<input key={"10000"} type="submit" value="+" onClick={this.addExpHandler} style={{ margin: "30px", height: "50px", width: "50px", fontSize: "40px", lineHeight: "20px", padding: "0px", borderRadius: "50%", border: "0", backgroundColor: "#28abb9", color: "white" }}></input>)
+            expField: this.state.expField.concat(<input key={"10000"} type="submit" value="+" onClick={this.addExpHandler} style={{
+                marginTop: "1%",
+                marginLeft: "30%",
+                height: "20px",
+                width: "20px",
+                fontSize: "20px",
+                lineHeight: "20px",
+                padding: "0",
+                borderRadius: "50%",
+                border: "0",
+                backgroundColor: "#28abb9",
+                color: "white",
+                fontWeight: "bold"
+            }}></input>)
         })
     }
 

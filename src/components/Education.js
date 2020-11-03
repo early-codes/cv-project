@@ -22,20 +22,16 @@ class Education extends Component {
             eduField: this.state.eduField.concat(<input key={"10000"} type="submit" value="+" onClick={this.addEduHandler} style={{
                 marginTop: "1%",
                 marginLeft: "30%",
-                height: "50px",
-                width: "50px",
-                fontSize: "40px",
+                height: "20px",
+                width: "20px",
+                fontSize: "20px",
                 lineHeight: "20px",
-                padding: "0px",
+                padding: "0",
                 borderRadius: "50%",
                 border: "0",
                 backgroundColor: "#28abb9",
                 color: "white",
-                $nest: {
-                    "&:hover": {
-                        color: "black"
-                    }
-                }
+                fontWeight: "bold"
             }}></input>)
         })
     }
@@ -125,10 +121,8 @@ class Education extends Component {
 
         return (
             <div className="component">
-                <h2>Education:</h2>
-                <div className="fieldStyle">
-                    {this.state.eduField}
-                </div>
+                <h2 style={{ marginLeft: "-1%" }}>Education:</h2>
+                {this.state.eduField}
             </div>
         )
     }

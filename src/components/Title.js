@@ -53,7 +53,7 @@ class Title extends Component {
 
         return (
             <div className="component" style={{ textAlign: "center" }}>
-                <h1>CIRRICULUM VITAE</h1>
+                <h1 style={{ paddingTop: "2%" }}>CIRRICULUM VITAE</h1>
                 {this.state.fields.name}
             </div>
 

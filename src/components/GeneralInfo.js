@@ -23,10 +23,6 @@ class GeneralInfo extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    /* todo:
-    p ye tıklayınca text inputta veriyi placeholder a değil value ya versin.
-    */
-
     fieldNameSetter = (name) => {
         switch (name) {
             case "birthDate":
