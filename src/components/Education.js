@@ -20,7 +20,8 @@ class Education extends Component {
     componentDidMount() {
         this.setState({
             eduField: this.state.eduField.concat(<input key={"10000"} type="submit" value="+" onClick={this.addEduHandler} style={{
-                marginLeft: "60%",
+                marginTop: "1%",
+                marginLeft: "30%",
                 height: "50px",
                 width: "50px",
                 fontSize: "40px",
@@ -47,10 +48,10 @@ class Education extends Component {
                 <input required type="text" name={index + "inputText"} placeholder="Your Education Here"></input><br />
                 <textarea placeholder="Your Education Details Here" required name={index + "textArea"}></textarea><br />
                 <input type="submit" value="Submit"></input>
-                <input type="button" value="Cancel" onClick={() => this.cancelHandler(index)}></input>
+                <input type="button" value="Cancel" onClick={() => this.cancelHandler(index, null)}></input>
             </form>,
             ...this.state.eduField.slice(index)]
-        })
+        }, () => { console.log(this.state.eduField[index]) })
     }
 
     eduSubmitHandler = (event, eduIndex) => {
@@ -70,7 +71,7 @@ class Education extends Component {
     }
 
     editEduHandler = (eduIndex) => {
-        let fieldToChange = this.state.eduField.filter((field) => (field.key) === eduIndex.toString())
+        let fieldToChange = this.state.eduField[eduIndex]
         this.setState({
             eduField: this.state.eduField.map((field) => {
                 return ((eduIndex.toString() === (field.key)) ?
@@ -88,14 +89,27 @@ class Education extends Component {
     }
 
     cancelHandler = (filterIndex, fieldToChange) => {
-        this.setState({
-            eduField: this.state.eduField.map((field) => {
+        let eduFieldSetter = () => {
+            if (fieldToChange) {
                 return (
-                    (field.key === filterIndex.toString()) ?
-                        fieldToChange[0] :
-                        field
+                    this.state.eduField.map((field) => {
+                        return (
+                            (field.key.toString() === filterIndex.toString()) ?
+                                fieldToChange :
+                                field
+                        )
+                    })
                 )
-            })
+            } else {
+                return (
+                    this.state.eduField.filter((field) =>
+                        field.key !== filterIndex.toString()
+                    )
+                )
+            }
+        }
+        this.setState({
+            eduField: eduFieldSetter()
         })
     }
 
@@ -112,8 +126,9 @@ class Education extends Component {
         return (
             <div className="component">
                 <h2>Education:</h2>
-
-                {this.state.eduField}
+                <div className="fieldStyle">
+                    {this.state.eduField}
+                </div>
             </div>
         )
     }

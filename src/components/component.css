@@ -2,12 +2,14 @@
     text-align: left;
     padding-bottom: 50px;
     border-bottom: 2px solid grey;
+    margin-left: 2%
     
 }
 
 .entries {
     margin-top: 50px;
 }
+
 
 h2 {
     text-decoration: underline;

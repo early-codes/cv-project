@@ -107,7 +107,7 @@ class GeneralInfo extends Component {
     render() {
         return (
             <div className="component">
-                <h2>General Info:</h2>
+                <h2 style={{ marginLeft: "-1%" }}>General Info:</h2>
                 {this.state.fields}
             </div>
         )

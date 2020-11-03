@@ -93,7 +93,7 @@ class Practical extends Component {
     render() {
         return (
             <div className="component">
-                <h2>Practical:</h2>
+                <h2 style={{ marginLeft: "-1%" }}>Practical:</h2>
                 {this.state.expField}
             </div>
         )
